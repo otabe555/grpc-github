@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+option go_package = "/proto";
+package api;
+
+service ContactRequest {
+    rpc Create ( CreateUserRequest ) returns ( CreateUserResponse ) {}
+    rpc Update ( UpdateUserRequest ) returns ( UpdateUserResponse ) {}
+    rpc Get ( GetUserRequest ) returns ( GetUserResponse ) {}
+    rpc Delete ( DeleteUserRequest ) returns ( DeleteUserResponse ) {}
+    rpc GetAll( GetAllRequest ) returns  ( stream GetAllResponse) {}
+}
+
+message User {
+    int64 id = 1;
+    string name = 2;
+    string phone = 3;
+    string gender = 4;
+    string email = 5;
+    string createdat = 6;
+}
+
+message GetAllRequest{}
+
+message GetAllResponse{
+    User user = 1;
+}
+
+message CreateUserRequest{
+    User user = 1;
+}
+
+message CreateUserResponse{
+    User user = 1;
+}
+
+message UpdateUserRequest{
+    User user = 1;
+}
+
+message UpdateUserResponse{
+    User user = 1;
+}
+
+message GetUserRequest{
+    int64 id = 1;
+}
+
+message GetUserResponse{
+    User user = 1;
+}
+
+message DeleteUserRequest{
+    int64 id = 1;
+}
+
+message DeleteUserResponse{
+    bool success = 1;
+}
